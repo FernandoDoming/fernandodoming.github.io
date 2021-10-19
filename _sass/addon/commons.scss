@@ -1214,7 +1214,7 @@ $sidebar-display: "sidebar-display";
     height: 5rem;
   }
 
-  .site-subtitle {
+  .site-title, .site-subtitle {
     @include ml-mr(1.8rem);
   }
 

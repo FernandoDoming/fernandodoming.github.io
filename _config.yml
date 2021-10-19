@@ -1,7 +1,8 @@
 # The Site Configuration
 
-# Import the theme
 theme: jekyll-theme-chirpy
+
+encoding: UTF-8
 
 # Change the following value to '/PROJECT_NAME' ONLY IF your site type is GitHub Pages Project sites
 # and doesn't have a custom domain.
@@ -13,7 +14,7 @@ baseurl: ''
 lang: en
 
 # Change to your timezone › http://www.timezoneconverter.com/cgi-bin/findzone/findzone
-timezone: Europe/Paris
+timezone: America/New_York
 
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
@@ -48,6 +49,8 @@ social:
     # - https://www.linkedin.com/in/username
 
 google_site_verification: google_meta_tag_verification # change to your verification string
+
+plugins: [jekyll-paginate]
 
 # ↑ --------------------------
 
