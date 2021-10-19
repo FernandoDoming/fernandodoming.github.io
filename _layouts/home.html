@@ -3,6 +3,29 @@ layout: page
 # The Home page layout
 ---
 
+<div class="profile-wrapper">
+  {% if site.avatar != '' and site.avatar %}
+    <div id="avatar">
+        {% capture avatar_url %}
+          {%- if site.avatar contains '://' -%}
+            {{ site.avatar }}
+          {%- elsif site.img_cdn != '' and site.img_cdn -%}
+            {{ site.avatar | prepend: site.img_cdn }}
+          {%- else -%}
+            {{ site.avatar | relative_url }}
+          {%- endif -%}
+        {% endcapture %}
+        <img src="{{ avatar_url }}" alt="avatar" onerror="this.style.display='none'">
+    </div>
+  {% endif %}
+
+  <div class="site-title">
+    {{ site.title }}
+  </div>
+  <div class="site-subtitle">{{ site.tagline }}</div>
+
+</div><!-- .profile-wrapper -->
+
 {% include lang.html %}
 
 {% assign pinned = site.posts | where: "pin", "true" %}
@@ -77,11 +100,30 @@ layout: page
         {% endif %}
       </div>
 
-      {% if post.pin %}
-      <div class="pin">
-        <i class="fas fa-thumbtack fa-fw"></i>
-        <span>{{ site.data.locales[lang].post.pin_prompt }}</span>
-      </div>
+      {% if post.tags.size > 0 %}
+         <div class="post-tags">
+           <i class="fa fa-tags fa-fw mr-1"></i>
+           {% for tag in post.tags %}
+           <a href="{{ site.baseurl }}/tags/{{ tag | slugify | url_encode }}/"
+             class="post-tag no-text-decoration" >
+             {{- tag -}}
+           </a>
+           {% endfor %}
+           {% if post.pin %}
+             <span class="pin">
+               <i class="fas fa-thumbtack fa-fw"></i>
+               <span>{{ site.data.locales[lang].post.pin_prompt }}</span>
+             </span>
+           {% endif %}
+         </div>
+
+      {% else %}
+        {% if post.pin %}
+        <div class="pin">
+          <i class="fas fa-thumbtack fa-fw"></i>
+          <span>{{ site.data.locales[lang].post.pin_prompt }}</span>
+        </div>
+        {% endif %}
       {% endif %}
 
     </div> <!-- .post-meta -->

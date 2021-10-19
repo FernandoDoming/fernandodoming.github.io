@@ -126,6 +126,26 @@ layout: default
 
 <div class="row">
   <div class="col-12 col-lg-11 col-xl-8">
+    <div id="gitalk-container" style="padding: 0 30px;"></div>
+  </div>
+</div>
+
+<script>
+  const gitalk = new Gitalk({
+    clientID: '641605cb11b28f746a84',
+    clientSecret: 'cfced23cd9aeec6eb088a1041587044769ee702e',
+    repo: 'fernandodoming.github.io',      // The repository of store comments,
+    owner: 'FernandoDoming',
+    admin: ['FernandoDoming'],
+    id: location.pathname,      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+</script>
+
+<div class="row">
+  <div class="col-12 col-lg-11 col-xl-8">
     <div id="post-extend-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
 
     {% include related-posts.html %}

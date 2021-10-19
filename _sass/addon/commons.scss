@@ -1,7 +1,7 @@
 /*
   The common styles
 */
-@import url('https://fonts.googleapis.com/css2?family=Lato&family=Source+Sans+Pro:wght@400;600;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?Playfair+Display:wght@400;500;700&family=VT323&family=Lato&family=Source+Sans+Pro:wght@400;600;900&display=swap');
 
 @mixin mode-toggle($dark-mode: false) {
   @if $dark-mode {
@@ -86,6 +86,49 @@ $scrollbar-size: 7px;
 }
 
 /* --- Typography --- */
+
+.site-title {
+  font-family: "VT323";
+  font-size: 3.5rem;
+  line-height: 3rem;
+  color: #ccc;
+}
+
+.sidebar-home-link {
+  font-family: "VT323";
+  font-size: 1.3rem;
+  color: #ddd;
+}
+
+.site-subtitle {
+  font-family: "VT323";
+  color: #999;
+  font-size: 1.4rem;
+}
+
+.separator-title {
+  font-family: "Lato";
+  margin-top: 40px;
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: #ccc;
+  position: relative;
+  padding: 15px 0;
+
+  &:before {
+    content : "";
+    position: absolute;
+    left    : 0;
+    bottom  : 0;
+    height  : 5px;
+    width   : 30px;  /* or 100px */
+    border-bottom: 5px solid #bc234c;
+  }
+}
+
+h1,h2,h3,h4,h5 {
+  font-weight: 700;
+}
 
 h1 {
   @extend %heading;
@@ -235,8 +278,8 @@ footer {
     padding: 0.3rem 0.5rem;
     margin: 0 0.35rem 0.5rem 0;
     &:hover {
-      background-color: #2a408e;
-      border-color: #2a408e;
+      background-color: #bc234c;
+      border-color: #bc234c;
       color: #fff;
       transition: none;
     }
@@ -536,11 +579,22 @@ footer {
 
     border-bottom: none;
     text-decoration: none;
-    color: #d2603a;
+    color: #ff5722;
   }
 }
 
 /* --- buttons --- */
+
+a.btn-outline-primary:not(:disabled):not(.disabled):active {
+    color: #fff;
+    background-color: #621227;
+    border-color: #bc234c;
+}
+
+a.btn-outline-primary:not(:disabled):not(.disabled).active:focus, a.btn-outline-primary:not(:disabled):not(.disabled):active:focus, .show>.btn-outline-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem #bc234c73;
+}
+
 .btn-lang {
   border: 1px solid !important;
   padding: 1px 3px;
@@ -1530,6 +1584,14 @@ $sidebar-display: "sidebar-display";
 
   #breadcrumb {
     padding-left: 0;
+  }
+
+  .d-xxl-block {
+      display: block !important;
+  }
+
+  .d-xxl-none {
+    display: none !important;
   }
 
   #main > div.row > div.col-xl-8 {

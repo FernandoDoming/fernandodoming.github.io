@@ -3,48 +3,26 @@
 -->
 
 <div id="sidebar" class="d-flex flex-column align-items-end" lang="{{lang}}">
-  <div class="profile-wrapper text-center">
-    <div id="avatar">
-      <a href="{{ '/' | relative_url }}" alt="avatar" class="mx-auto">
-        {% if site.avatar != '' and site.avatar %}
-          {% capture avatar_url %}
-            {%- if site.avatar contains '://' -%}
-              {{ site.avatar }}
-            {%- elsif site.img_cdn != '' and site.img_cdn -%}
-              {{ site.avatar | prepend: site.img_cdn }}
-            {%- else -%}
-              {{ site.avatar | relative_url }}
-            {%- endif -%}
-          {% endcapture %}
-          <img src="{{ avatar_url }}" alt="avatar" onerror="this.style.display='none'">
-        {% endif %}
-      </a>
-    </div>
 
-    <div class="site-title mt-3">
-      <a href="{{ '/' | relative_url }}">{{ site.title }}</a>
-    </div>
-    <div class="site-subtitle font-italic">{{ site.tagline }}</div>
-
-  </div><!-- .profile-wrapper -->
-
-  <ul class="w-100">
+  <ul class="w-100" style="margin-top: 0px;">
 
     <!-- home -->
     <li class="nav-item{% if page.layout == 'home' %}{{ " active" }}{% endif %}">
       <a href="{{ '/' | relative_url }}" class="nav-link">
-        <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i>
-        <span>{{ site.data.locales[lang].tabs.home | upcase }}</span>
+        <span class="d-xxl-none sidebar-home-link">FDD</span>
+        <span class="d-none d-xxl-block">{{ site.data.locales[lang].tabs.home | upcase }}</span>
       </a>
     </li>
     <!-- the real tabs -->
     {% for tab in site.tabs %}
     <li class="nav-item{% if tab.url == page.url %}{{ " active" }}{% endif %}">
       <a href="{{ tab.url | relative_url }}" class="nav-link">
-        <i class="fa-fw {{ tab.icon }} ml-xl-3 mr-xl-3 unloaded"></i>
+        <i class="fa-fw {{ tab.icon }} d-xxl-none"></i>
         {% capture tab_name %}{{ tab.url | split: '/' }}{% endcapture %}
 
-        <span>{{ site.data.locales[lang].tabs.[tab_name] | default: tab.title | upcase }}</span>
+        <span class="d-none d-xxl-block">
+          {{ site.data.locales[lang].tabs.[tab_name] | default: tab.title | upcase }}
+        </span>
       </a>
     </li> <!-- .nav-item -->
     {% endfor %}

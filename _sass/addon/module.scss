@@ -22,8 +22,8 @@
 }
 
 %link-hover {
-  color: #d2603a !important;
-  border-bottom: 1px solid #d2603a;
+  color: #e91e63 !important;
+  border-bottom: none;
   text-decoration: none;
 }
 
@@ -33,6 +33,10 @@
 
 %link-underline {
   border-bottom: 1px solid var(--link-underline-color);
+}
+
+.post-meta .post-tags a {
+  border-bottom: none;
 }
 
 %clickable-transition {
