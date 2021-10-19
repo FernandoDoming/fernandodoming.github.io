@@ -111,6 +111,9 @@ collections:
   tabs:
     output: true
     sort_by: order
+  archives:
+    output: true
+    permalink: /archives/:path/
 
 
 defaults:
