@@ -1,8 +1,8 @@
 ---
-title: "radare2 r2pipe optimization quick tips"
+title: "r2pipe optimization tips"
 author: Fernando Dominguez
 date: 2021-10-19 18:00:00 +0200
-categories: [analysis, scripting, radare2]
+categories: [analysis, radare2]
 tags: [quick-tips, radare2, r2pipe]
 ---
 
