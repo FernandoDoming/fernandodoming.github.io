@@ -130,20 +130,6 @@ layout: default
   </div>
 </div>
 
-<script>
-  const gitalk = new Gitalk({
-    clientID: 'ee02b1c9aa1bce370963',
-    clientSecret: 'f8f0623977b8561f357e27f0404ce54271060ad8',
-    repo: 'fernandodoming.github.io',      // The repository of store comments,
-    owner: 'FernandoDoming',
-    admin: ['FernandoDoming'],
-    id: location.pathname,      // Ensure uniqueness and length less than 50
-    distractionFreeMode: false  // Facebook-like distraction free mode
-  })
-
-  gitalk.render('gitalk-container')
-</script>
-
 <div class="row">
   <div class="col-12 col-lg-11 col-xl-8">
     <div id="post-extend-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
@@ -161,3 +147,19 @@ layout: default
   </div> <!-- .col-* -->
 
 </div> <!-- .row -->
+
+<script>
+  $(document).ready(function() {
+    const gitalk = new Gitalk({
+      clientID: 'ee02b1c9aa1bce370963',
+      clientSecret: 'f8f0623977b8561f357e27f0404ce54271060ad8',
+      repo: 'fernandodoming.github.io',
+      owner: 'FernandoDoming',
+      admin: ['FernandoDoming'],
+      distractionFreeMode: false,
+      id: CryptoJS.MD5(location.pathname).toString()
+    });
+
+    gitalk.render('gitalk-container');
+  });
+</script>

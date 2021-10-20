@@ -46,6 +46,59 @@ body {
   font-family: 'Source Sans Pro', 'Microsoft Yahei', sans-serif;
 }
 
+/* Gitalk overrides */
+
+body .gt-container {
+
+  & a {
+    color: #bc234c;
+
+    &:hover {
+      color: #e91e63;
+      border-color: #e91e63;
+    }
+  }
+
+  & .gt-header-controls-tip {
+    color: #ddd;
+  }
+
+  & .gt-link {
+    border-bottom: 1px dotted #bc234c;
+  }
+
+  & .gt-svg svg,
+  & .gt-user .gt-ico svg {
+    fill: #ddd;
+  }
+
+  & .gt-btn {
+    background-color: #bc234c;
+    border: 1px solid #bc234c;
+
+    &.gt-btn-public {
+      border: 1px solid #bc234c;
+      background-color: #bc234c;
+
+      &:hover {
+        background-color: #e91e63;
+        border-color: #e91e63;
+      }
+    }
+
+    &.gt-btn-preview {
+      border: 1px solid #bc234c;
+      background-color: #bc234c;
+      color: white;
+
+      &:hover {
+        background-color: #e91e63;
+        border-color: #e91e63;
+      }
+    }
+  }
+}
+
 /* --- Scrollbar --- */
 
 $scrollbar-size: 7px;
