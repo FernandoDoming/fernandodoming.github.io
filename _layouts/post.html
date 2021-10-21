@@ -162,4 +162,15 @@ layout: default
 
     gitalk.render('gitalk-container');
   });
+
+  $(window).on("load", function () {
+    $(".img-link").each(function (index) {
+      let $img = $(this).find("img");
+      let alt = $img.attr("alt");
+      if (!alt) return;
+
+      $(this).append('<span class="img-footer">' + alt + '</span>');
+    });
+
+  });
 </script>
