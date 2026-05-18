@@ -17,10 +17,10 @@ permissions:
   pages: write
   id-token: write
 
-# Allow one concurrent deployment
+# Allow one concurrent deployment; do not cancel in-progress deploys (artifact API needs the full run)
 concurrency:
   group: "pages"
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -37,7 +37,7 @@ jobs:
 
       - name: Setup Pages
         id: pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v5
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
@@ -46,9 +46,9 @@ jobs:
           bundler-cache: true
 
       - name: Build site
-        run: bundle exec jekyll b -d "_site${{ steps.pages.outputs.base_path }}"
+        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
-          JEKYLL_ENV: "production"
+          JEKYLL_ENV: production
 
       # - name: Test site
       #   run: |
@@ -56,8 +56,6 @@ jobs:
 
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
-        with:
-          path: "_site${{ steps.pages.outputs.base_path }}"
 
   deploy:
     name: "Deploy site"
@@ -69,4 +67,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v5
