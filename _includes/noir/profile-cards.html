@@ -1,0 +1,24 @@
+{% if site.data.profiles.size > 0 %}
+  <div class="profile-cards" role="list">
+    {% for profile in site.data.profiles %}
+      <a
+        class="profile-card"
+        href="{{ profile.url }}"
+        target="_blank"
+        rel="noopener noreferrer"
+        role="listitem"
+      >
+        <span class="profile-card-icon-wrap">
+          {% include noir/profile-icon.html icon=profile.icon %}
+        </span>
+        <span class="profile-card-body">
+          <span class="profile-card-name">{{ profile.name }}</span>
+          {% if profile.label %}
+            <span class="profile-card-label">{{ profile.label }}</span>
+          {% endif %}
+        </span>
+        <span class="profile-card-arrow mono" aria-hidden="true">&#8594;</span>
+      </a>
+    {% endfor %}
+  </div>
+{% endif %}

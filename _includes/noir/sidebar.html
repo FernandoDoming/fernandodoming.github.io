@@ -1,0 +1,108 @@
+{% include lang.html %}
+{% assign logo_mark = site.title | strip | slice: 0 %}
+
+<button type="button" class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open menu" aria-expanded="false">
+  menu
+</button>
+
+<button type="button" class="sidebar-backdrop" id="sidebar-backdrop" aria-label="Close menu" hidden></button>
+
+<aside class="site-sidebar" id="site-sidebar" aria-label="Site navigation">
+  <div class="sidebar-inner">
+    <a class="site-logo" href="{{ '/' | relative_url }}" aria-label="{{ site.title }} home">
+      <span class="logo-full">
+        <span class="logo-text">{{ site.title | replace: ' ', '' | truncate: 12, '' }}</span><span class="logo-slash">\</span>
+      </span>
+      <span class="logo-mark">{{ logo_mark }}</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Main">
+      <a class="nav-link{% if page.url == '/' %} active{% endif %}" href="{{ '/' | relative_url }}">
+        {% include noir/nav-icon.html icon='home' %}
+        <span class="nav-label">{{ site.data.locales[lang].tabs.home | default: 'Home' }}</span>
+      </a>
+
+      {% assign sorted_tabs = site.tabs | sort: 'order' %}
+      {% for tab in sorted_tabs %}
+        {% assign tab_key = tab.url | split: '/' | join: '' %}
+        {% assign tab_label = site.data.locales[lang].tabs[tab_key] | default: tab.title %}
+        <a class="nav-link{% if page.url == tab.url %} active{% endif %}"
+          href="{{ tab.url | relative_url }}"
+          title="{{ tab_label }}">
+          {% include noir/nav-icon.html icon=tab_key %}
+          <span class="nav-label">{{ tab_label }}</span>
+        </a>
+      {% endfor %}
+    </nav>
+
+    <div class="sidebar-footer">
+      <button type="button" class="sidebar-toggle" id="sidebar-toggle" aria-label="Collapse sidebar">
+        <span class="toggle-icon toggle-icon-collapse" aria-hidden="true">‹</span>
+        <span class="toggle-icon toggle-icon-expand" aria-hidden="true">›</span>
+      </button>
+    </div>
+  </div>
+</aside>
+
+<script>
+  (function () {
+    var body = document.body;
+    var sidebar = document.getElementById('site-sidebar');
+    var toggle = document.getElementById('sidebar-toggle');
+    var mobileBtn = document.getElementById('mobile-menu-btn');
+    var backdrop = document.getElementById('sidebar-backdrop');
+    var storageKey = 'noir-sidebar-collapsed';
+
+    function isDesktop() {
+      return window.matchMedia('(min-width: 769px)').matches;
+    }
+
+    function setCollapsed(collapsed) {
+      body.classList.toggle('sidebar-collapsed', collapsed);
+      if (toggle) {
+        toggle.setAttribute('aria-label', collapsed ? 'Expand sidebar' : 'Collapse sidebar');
+      }
+      if (isDesktop()) {
+        localStorage.setItem(storageKey, collapsed ? '1' : '0');
+      }
+    }
+
+    if (isDesktop() && localStorage.getItem(storageKey) === '1') {
+      setCollapsed(true);
+    }
+
+    function setMobileOpen(open) {
+      if (!sidebar) return;
+      sidebar.classList.toggle('is-open', open);
+      if (backdrop) {
+        backdrop.classList.toggle('is-visible', open);
+        backdrop.hidden = !open;
+      }
+      if (mobileBtn) {
+        mobileBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      }
+    }
+
+    if (toggle) {
+      toggle.addEventListener('click', function () {
+        if (!isDesktop()) {
+          setMobileOpen(false);
+          return;
+        }
+        setCollapsed(!body.classList.contains('sidebar-collapsed'));
+      });
+    }
+
+    if (mobileBtn) {
+      mobileBtn.addEventListener('click', function () {
+        setMobileOpen(!sidebar.classList.contains('is-open'));
+      });
+    }
+
+    if (backdrop) {
+      backdrop.addEventListener('click', function () {
+        setMobileOpen(false);
+      });
+    }
+  })();
+</script>

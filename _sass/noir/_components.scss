@@ -1,0 +1,176 @@
+.post-card {
+  padding: $space-md 0;
+  border-bottom: 1px solid $border;
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  .post-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-sm;
+    margin-bottom: $space-xs;
+  }
+
+  .post-card-title {
+    font-family: $font-sans;
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin: 0 0 $space-xs;
+    line-height: 1.3;
+
+    a {
+      text-decoration: none;
+      color: $text-primary;
+
+      &:hover {
+        color: $accent;
+      }
+    }
+  }
+
+  .post-card-excerpt {
+    font-family: $font-sans;
+    font-size: 0.95rem;
+    color: $text-muted;
+    margin: 0;
+    line-height: 1.55;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+.post-card-compact {
+  .post-card-title {
+    font-size: 1rem;
+  }
+
+  .post-card-excerpt {
+    display: none;
+  }
+}
+
+.related-posts {
+  margin-top: $space-2xl;
+  padding-top: $space-lg;
+  border-top: 1px solid $border;
+
+  h2 {
+    @extend .mono;
+    font-size: 0.75rem;
+    margin: 0 0 $space-md;
+    color: $text-muted;
+  }
+}
+
+// About page — profile link cards (see _data/profiles.yml)
+.profile-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-sm;
+  margin: $space-xl 0 0;
+  padding: 0;
+  list-style: none;
+
+  @media (min-width: 520px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.profile-card {
+  display: flex;
+  align-items: center;
+  gap: $space-sm;
+  padding: $space-md;
+  border: 1px solid $border;
+  border-radius: $radius-md;
+  background: $bg-card;
+  text-decoration: none;
+  color: inherit;
+  transition:
+    border-color $transition,
+    background $transition,
+    transform $transition;
+
+  &:hover {
+    border-color: $border-strong;
+    background: $bg-card-hover;
+    transform: translateY(-1px);
+
+    .profile-card-arrow {
+      color: $text-secondary;
+      transform: translateX(2px);
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid $accent;
+    outline-offset: 2px;
+  }
+}
+
+.profile-card-icon-wrap {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid $border;
+  border-radius: $radius-sm;
+  color: $text-secondary;
+  background: rgba(255, 255, 255, 0.03);
+  transition: color $transition, border-color $transition;
+}
+
+.profile-card-icon {
+  display: block;
+}
+
+.profile-card-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.profile-card-name {
+  font-family: $font-sans;
+  font-size: 1rem;
+  font-weight: 600;
+  color: $text-primary;
+  transition: color $transition;
+}
+
+.profile-card-label {
+  font-family: $font-sans;
+  font-size: 0.8125rem;
+  color: $text-muted;
+  line-height: 1.35;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.profile-card-arrow {
+  flex-shrink: 0;
+  font-size: 0.85rem;
+  color: $text-muted;
+  transition: color $transition, transform $transition;
+}
+
+.breadcrumb {
+  margin-bottom: $space-md;
+
+  a {
+    text-decoration: none;
+    color: $text-muted;
+
+    &:hover {
+      color: $accent;
+    }
+  }
+}

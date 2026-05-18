@@ -1,0 +1,15 @@
+---
+layout: noir-page
+---
+
+{% include lang.html %}
+{% assign post_df = site.data.locales[lang].date_format.post.long | default: '%b %e, %Y' %}
+
+<ul class="archive-list">
+  {% for post in page.posts %}
+    <li>
+      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      <time class="archive-date mono" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: post_df }}</time>
+    </li>
+  {% endfor %}
+</ul>

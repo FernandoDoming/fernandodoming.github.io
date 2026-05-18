@@ -1,0 +1,23 @@
+---
+layout: noir
+---
+
+{% include lang.html %}
+
+<header class="page-header">
+  <h1 class="page-title">
+    {% if page.dynamic_title and page.collection == 'tabs' %}
+      {% assign tab_key = page.url | split: '/' | join: '' %}
+      {{ site.data.locales[lang].tabs[tab_key] | default: page.title }}
+    {% else %}
+      {{ page.title }}
+    {% endif %}
+  </h1>
+  {% if page.description %}
+    <p class="page-description lead">{{ page.description }}</p>
+  {% endif %}
+</header>
+
+<div class="post-content">
+  {{ content }}
+</div>

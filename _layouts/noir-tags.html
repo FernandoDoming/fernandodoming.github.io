@@ -1,0 +1,16 @@
+---
+layout: noir-page
+---
+
+<div class="taxonomy-grid">
+  {% assign tags = "" | split: "" %}
+  {% for t in site.tags %}
+    {% assign tags = tags | push: t[0] %}
+  {% endfor %}
+  {% assign sorted_tags = tags | sort_natural %}
+  {% for t in sorted_tags %}
+    <a class="taxonomy-chip" href="{{ site.baseurl }}/tags/{{ t | slugify | url_encode }}/">
+      {{ t }}<span>{{ site.tags[t].size }}</span>
+    </a>
+  {% endfor %}
+</div>

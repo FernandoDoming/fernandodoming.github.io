@@ -1,0 +1,115 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.site-logo,
+.nav-link,
+.btn,
+.meta-label,
+.hero-title,
+.post-title,
+.card-title,
+.post-feed-title {
+  font-family: $font-sans;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: $text-primary;
+}
+
+h1 {
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  font-weight: 700;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin-top: $space-xl;
+  margin-bottom: $space-md;
+}
+
+h3 {
+  font-size: 1.35rem;
+  margin-top: $space-lg;
+}
+
+p {
+  margin: 0 0 1.25em;
+  color: $text-secondary;
+}
+
+.lead,
+.hero-lead {
+  font-family: $font-serif;
+}
+
+.post-excerpt {
+  font-family: $font-sans;
+  font-size: 1.125rem;
+  line-height: 1.65;
+  color: $text-secondary;
+}
+
+.mono,
+.post-meta time,
+.post-meta .category,
+.tag-pill,
+.archive-date,
+.breadcrumb {
+  font-family: $font-mono;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: $text-muted;
+}
+
+.hero-emphasis {
+  text-decoration: underline;
+  text-decoration-thickness: 0.11em;
+  text-underline-offset: 0.12em;
+  text-decoration-color: $accent;
+}
+
+blockquote {
+  margin: $space-lg 0;
+  padding-left: $space-md;
+  border-left: 2px solid $accent;
+  font-style: italic;
+  color: $text-secondary;
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+code {
+  font-family: $font-mono;
+  font-size: 0.88em;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  color: $accent-terminal;
+}
+
+// Standalone pre (outside Rouge wrappers) — handled in _syntax.scss for .highlighter-rouge
+pre:not(.highlight) {
+  font-family: $font-mono;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  background: #0d0d0c;
+  border: 1px solid $border;
+  border-radius: $radius-md;
+  padding: $space-md;
+  margin: $space-md 0;
+
+  code {
+    background: none;
+    padding: 0;
+    color: inherit;
+  }
+}

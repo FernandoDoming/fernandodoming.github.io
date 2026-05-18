@@ -1,0 +1,57 @@
+---
+layout: noir
+---
+
+{% include lang.html %}
+
+<section class="hero">
+  <h1 class="hero-title word-animation">
+    <span class="title-word" style="--title-word-i: 0">Malware</span>
+    <span class="title-word hero-emphasis" style="--title-word-i: 1">research</span><br>
+    <span class="title-word" style="--title-word-i: 2">&amp;</span>
+    <span class="title-word" style="--title-word-i: 3">reverse</span>
+    <span class="title-word hero-emphasis" style="--title-word-i: 4">engineering</span>
+  </h1>
+</section>
+
+{% assign pinned = site.posts | where: "pin", "true" %}
+{% assign defaults = site.posts | where_exp: "item", "item.pin != true" %}
+{% assign posts = "" | split: "" %}
+
+{% assign offset = paginator.page | minus: 1 | times: paginator.per_page %}
+{% assign pinned_num = pinned.size | minus: offset %}
+
+{% if pinned_num > 0 %}
+  {% for i in (offset..pinned.size) limit: pinned_num %}
+    {% assign posts = posts | push: pinned[i] %}
+  {% endfor %}
+{% else %}
+  {% assign pinned_num = 0 %}
+{% endif %}
+
+{% assign default_beg = offset | minus: pinned.size %}
+{% if default_beg < 0 %}
+  {% assign default_beg = 0 %}
+{% endif %}
+
+{% assign default_num = paginator.posts | size | minus: pinned_num %}
+{% assign default_end = default_beg | plus: default_num | minus: 1 %}
+
+{% if default_num > 0 %}
+  {% for i in (default_beg..default_end) %}
+    {% assign posts = posts | push: defaults[i] %}
+  {% endfor %}
+{% endif %}
+
+<section class="post-list" aria-label="Blog posts">
+  <p class="post-list-heading">Posts</p>
+  {% if posts.size > 0 %}
+    {% for post in posts %}
+      {% include noir/post-card.html post=post %}
+    {% endfor %}
+  {% else %}
+    <p class="lead">No posts yet.</p>
+  {% endif %}
+</section>
+
+{% include noir/pagination.html %}

@@ -1,0 +1,39 @@
+// Dark palette
+$bg-root: #141413;
+$bg-elevated: #1c1c1a;
+$bg-card: #1a1a18;
+$bg-card-hover: #222220;
+
+$text-primary: #f5f3ef;
+$text-secondary: #a8a59c;
+$text-muted: #6f6d66;
+
+$accent: #d97757;
+$accent-dim: rgba(217, 119, 87, 0.35);
+$accent-terminal: #7cb87a;
+
+$border: rgba(255, 255, 255, 0.08);
+$border-strong: rgba(255, 255, 255, 0.14);
+
+$font-sans: "DM Sans", system-ui, -apple-system, sans-serif;
+$font-serif: "Newsreader", "Georgia", serif;
+$font-mono: "JetBrains Mono", "SF Mono", ui-monospace, monospace;
+
+$radius-sm: 8px;
+$radius-md: 16px;
+$radius-lg: 28px;
+$radius-pill: 999px;
+
+$space-xs: 0.5rem;
+$space-sm: 1rem;
+$space-md: 1.5rem;
+$space-lg: 2.5rem;
+$space-xl: 4rem;
+$space-2xl: 6rem;
+
+$max-width: 960px;
+$content-width: 720px;
+$sidebar-width: 240px;
+$sidebar-collapsed-width: 3.5rem;
+
+$transition: 0.2s ease;

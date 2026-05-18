@@ -1,0 +1,20 @@
+# Edit URLs for your profiles (shown on the About page).
+- name: GitHub
+  url: https://github.com/FernandoDoming
+  icon: github
+  label: Code & research repos
+
+- name: LinkedIn
+  url: https://www.linkedin.com/in/fernando-dom%C3%ADnguez-delgado-572981b1
+  icon: linkedin
+  label: Professional profile
+
+- name: Mastodon
+  url: https://infosec.exchange/@fdd
+  icon: mastodon
+  label: Fediverse
+
+- name: Bluesky
+  url: https://bsky.app/profile/fddelg.bsky.social
+  icon: bluesky
+  label: "@fernandodoming.bsky.social"

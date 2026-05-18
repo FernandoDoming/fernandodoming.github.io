@@ -1,0 +1,9 @@
+{% comment %}
+  Outputs inline word spans for .word-animation stagger (see _layout.scss).
+  Params: text — title string
+          emphasis — optional 'first' to apply .hero-emphasis to first word
+{% endcomment %}
+{% assign words = include.text | split: ' ' %}
+{% for word in words %}
+<span class="title-word{% if include.emphasis == 'first' and forloop.first %} hero-emphasis{% endif %}" style="--title-word-i: {{ forloop.index0 }}">{{ word }}</span>{% unless forloop.last %}{{ " " }}{% endunless %}
+{% endfor %}

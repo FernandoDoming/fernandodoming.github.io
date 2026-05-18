@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'en' }}">
+  {% include noir/head.html %}
+  <body class="noir-theme">
+    {% include noir/sidebar.html %}
+    <div class="site-shell" id="site-shell">
+      <main class="site-main" id="main">
+        {{ content }}
+      </main>
+      {% include noir/footer.html %}
+    </div>
+    <script src="{{ '/assets/js/noir-code-collapse.js' | relative_url }}" defer></script>
+    <script src="{{ '/assets/js/noir-image-lightbox.js' | relative_url }}" defer></script>
+    {% if page.layout == 'noir-post' %}
+      <script src="{{ '/assets/js/noir-post-toc.js' | relative_url }}" defer></script>
+    {% endif %}
+  </body>
+</html>

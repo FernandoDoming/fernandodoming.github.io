@@ -1,0 +1,24 @@
+{% assign icon = include.icon | default: 'home' %}
+<svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+  {% case icon %}
+  {% when 'home' %}
+    <path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-9.5z"/>
+  {% when 'categories' %}
+    <path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/>
+  {% when 'tags' %}
+    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/>
+    <circle cx="7.5" cy="7.5" r="1.25" fill="currentColor" stroke="none"/>
+  {% when 'archives' %}
+    <rect x="3" y="4" width="18" height="17" rx="2"/>
+    <path d="M3 9h18M8 3v4M16 3v4"/>
+  {% when 'about' %}
+    <circle cx="12" cy="8" r="3.25"/>
+    <path d="M6 20c0-3.314 2.686-6 6-6s6 2.686 6 6"/>
+  {% when 'github' %}
+    <path d="M9 19c-4.3 1-4.3-2-6-3 2.2-1.3 2.2-4.5 0-6.5C2 8 4 6 7 5.5 8.2 3.9 10.2 3.2 12 3.2c1.8 0 3.8.7 5 2.3 3 0.5 5 2.5 4 5.5-2.2 2-2.2 5.3 0 6.5-1.7 1-1.7 4-6 3"/>
+    <path d="M9 17c0 .5.5 1 1 1h4c.5 0 1-.5 1-1v-2.5H9V17z"/>
+  {% else %}
+    <circle cx="12" cy="12" r="9"/>
+    <path d="M12 8v5M12 16h.01"/>
+  {% endcase %}
+</svg>

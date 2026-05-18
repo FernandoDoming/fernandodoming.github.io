@@ -1,0 +1,363 @@
+// Rouge syntax — dark terminal aesthetic
+$code-block-bg: #0d0d0c;
+
+@mixin pre-line-wrap {
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+@mixin code-block-shell {
+  background: $code-block-bg;
+  border: none;
+  border-radius: 0;
+}
+
+.highlight,
+.highlighter-rouge .highlight {
+  background: $code-block-bg;
+
+  .c { color: #6f6d66; }
+  .err { color: #d97757; }
+  .k { color: #7cb87a; }
+  .o { color: #a8a59c; }
+  .ch { color: #6f6d66; }
+  .cm { color: #6f6d66; }
+  .cp { color: #6f6d66; }
+  .c1 { color: #6f6d66; }
+  .cs { color: #6f6d66; }
+  .gd { color: #d97757; }
+  .ge { font-style: italic; }
+  .gr { color: #d97757; }
+  .gh { color: #a8a59c; }
+  .gi { color: #7cb87a; }
+  .go { color: #6f6d66; }
+  .gp { color: #6f6d66; }
+  .gs { font-weight: bold; }
+  .gu { color: #a8a59c; }
+  .gt { color: #d97757; }
+  .kc { color: #7cb87a; }
+  .kd { color: #7cb87a; }
+  .kn { color: #7cb87a; }
+  .kp { color: #7cb87a; }
+  .kr { color: #7cb87a; }
+  .kt { color: #d4a574; }
+  .m { color: #d4a574; }
+  .s { color: #c9b896; }
+  .na { color: #d97757; }
+  .nb { color: #f5f3ef; }
+  .nc { color: #d4a574; }
+  .no { color: #d97757; }
+  .nd { color: #7cb87a; }
+  .ni { color: #d97757; }
+  .ne { color: #d97757; }
+  .nf { color: #f5f3ef; }
+  .nl { color: #f5f3ef; }
+  .nn { color: #d4a574; }
+  .nt { color: #7cb87a; }
+  .nv { color: #d97757; }
+  .ow { color: #a8a59c; }
+  .w { color: #f5f3ef; }
+  .mf { color: #d4a574; }
+  .mh { color: #d4a574; }
+  .mi { color: #d4a574; }
+  .mo { color: #d4a574; }
+  .sb { color: #c9b896; }
+  .sc { color: #c9b896; }
+  .sd { color: #c9b896; }
+  .s2 { color: #c9b896; }
+  .se { color: #d97757; }
+  .sh { color: #c9b896; }
+  .si { color: #c9b896; }
+  .sx { color: #c9b896; }
+  .sr { color: #c9b896; }
+  .s1 { color: #c9b896; }
+  .ss { color: #c9b896; }
+  .bp { color: #d4a574; }
+  .vc { color: #d97757; }
+  .vg { color: #d97757; }
+  .vi { color: #d97757; }
+  .il { color: #d4a574; }
+}
+
+// Code blocks with line numbers (Rouge table layout)
+.highlighter-rouge {
+  margin: $space-md 0;
+  border-radius: $radius-md;
+  overflow: hidden;
+  border: 1px solid $border;
+  background: $code-block-bg;
+
+  .highlight {
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    overflow: auto;
+  }
+
+  pre {
+    @include code-block-shell;
+    margin: 0;
+    padding: 0;
+    font-size: 0.85rem;
+    line-height: 1.55;
+    overflow: visible;
+  }
+
+  code {
+    background: none;
+    padding: 0;
+    color: inherit;
+  }
+
+  table.rouge-table {
+    width: 100%;
+    margin: 0;
+    border: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
+    background: $code-block-bg;
+  }
+
+  td {
+    padding: 0;
+    border: 0;
+    vertical-align: top;
+    background: $code-block-bg;
+  }
+
+  td.rouge-gutter {
+    width: 1%;
+    white-space: nowrap;
+    user-select: none;
+    // Tight left inset; less top padding than bottom so blocks feel less airy
+    padding: 0.5rem 0.5rem $space-md 0.5rem;
+
+    pre,
+    code,
+    .lineno {
+      white-space: pre;
+      overflow-wrap: normal;
+      word-break: normal;
+      word-wrap: normal;
+    }
+
+    pre,
+    .lineno {
+      @include code-block-shell;
+      margin: 0;
+      font-family: $font-mono;
+      font-size: 0.85rem;
+      line-height: 1.55;
+      color: $text-muted;
+    }
+  }
+
+  td.rouge-code {
+    width: 100%;
+    padding: 0.5rem $space-md $space-md 0.5rem;
+
+    // One <tr> = one numbered source line. pre-wrap splits a line visually but
+    // Rouge only emits one gutter label per logical line → numbers mismatch.
+    // Use pre + horizontal scroll so line numbers align (see .highlight overflow).
+    pre {
+      @include code-block-shell;
+      margin: 0;
+      overflow: visible;
+      white-space: pre;
+      overflow-wrap: normal;
+      word-break: normal;
+      word-wrap: normal;
+    }
+  }
+
+  // Fenced blocks without line-number table — outer pre only; do not wrap the
+  // table wrapper (<pre>:has(.rouge-table)), or white-space/word-break inherits
+  // onto the gutter and stacks digits across lines (10 → 1 / 0).
+  > .highlight > pre:not(:has(.rouge-table)) {
+    @include pre-line-wrap;
+    padding: 0.5rem $space-md $space-md $space-md;
+  }
+
+  > .highlight > pre:has(.rouge-table) {
+    white-space: pre;
+    overflow-wrap: normal;
+    word-break: normal;
+    word-wrap: normal;
+  }
+}
+
+// Standalone figure.highlight (no Rouge wrapper)
+figure.highlight {
+  margin: $space-md 0;
+  border-radius: $radius-md;
+  overflow: auto;
+  border: 1px solid $border;
+  background: $code-block-bg;
+
+  pre {
+    @include code-block-shell;
+    @include pre-line-wrap;
+    margin: 0;
+    padding: 0.5rem $space-md $space-md $space-md;
+    font-size: 0.85rem;
+    line-height: 1.55;
+  }
+}
+
+// Collapsible code blocks (toolbar injected by assets/js/noir-code-collapse.js)
+.post-content .code-block-wrap {
+  margin: $space-md 0;
+  border: 1px solid $border;
+  border-radius: $radius-md;
+  overflow: hidden;
+  background: $code-block-bg;
+
+  > .highlighter-rouge,
+  > figure.highlight {
+    margin: 0;
+    border: none;
+    border-radius: 0;
+  }
+
+  > .highlighter-rouge {
+    // Outer chrome moves to .code-block-wrap; inner keeps syntax chrome only
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  > figure.highlight {
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+}
+
+.code-block-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: $space-xs;
+  padding: 0.4rem 0.55rem;
+  background: rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.code-block-toggle {
+  font-family: $font-mono;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $text-muted;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: $radius-sm;
+  padding: 0.35rem 0.55rem;
+  cursor: pointer;
+  transition: color $transition, border-color $transition, background $transition;
+
+  &:hover {
+    color: $accent;
+    border-color: rgba(217, 119, 87, 0.35);
+    background: rgba(217, 119, 87, 0.08);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $accent;
+    outline-offset: 2px;
+  }
+}
+
+.code-block-wrap.is-collapsed {
+  > .highlighter-rouge .highlight {
+    max-height: 16rem;
+    overflow: auto;
+    position: relative;
+  }
+
+  // Fade clipped content at bottom of scrollport (sticky overlay)
+  > .highlighter-rouge .highlight::after {
+    content: "";
+    display: block;
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    margin-top: -2.75rem;
+    height: 2.75rem;
+    pointer-events: none;
+    background: linear-gradient(to top, $code-block-bg 28%, rgba(13, 13, 12, 0));
+    z-index: 2;
+  }
+
+  > figure.highlight {
+    max-height: 16rem;
+    overflow: auto;
+    position: relative;
+  }
+
+  > figure.highlight::after {
+    content: "";
+    display: block;
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    margin-top: -2.75rem;
+    height: 2.75rem;
+    pointer-events: none;
+    background: linear-gradient(to top, $code-block-bg 28%, rgba(13, 13, 12, 0));
+    z-index: 2;
+  }
+}
+
+// Bottom tray: accent edge, shadow, full-width expand control (collapsed only)
+.code-block-collapsed-tray {
+  display: none;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 0;
+  background: $code-block-bg;
+  border-top: 1px solid rgba(217, 119, 87, 0.45);
+  box-shadow:
+    0 -1px 0 rgba(217, 119, 87, 0.2),
+    0 -10px 28px rgba(0, 0, 0, 0.55);
+}
+
+.code-block-wrap.is-collapsed .code-block-collapsed-tray {
+  display: flex;
+}
+
+.code-block-expand-caret {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  font-family: $font-mono;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $text-muted;
+  background: rgba(217, 119, 87, 0.06);
+  border: none;
+  border-radius: 0;
+  padding: 0.45rem 0.65rem 0.55rem;
+  cursor: pointer;
+  transition: color $transition, background $transition;
+
+  &:hover {
+    color: $accent;
+    background: rgba(217, 119, 87, 0.12);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $accent;
+    outline-offset: -2px;
+  }
+}
+
+.code-block-caret-icon {
+  display: inline-block;
+  font-size: 0.85rem;
+  line-height: 1;
+  color: $accent;
+  transform: translateY(0.05em);
+}

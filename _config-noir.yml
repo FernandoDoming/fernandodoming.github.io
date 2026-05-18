@@ -1,0 +1,6 @@
+# Optional Noir overlay — Noir is enabled in _config.yml by default now.
+#
+# Legacy: layering this file was only needed before Noir lived in `_config.yml`.
+# You can still use `jekyll build --config _config.yml,_config-noir.yml` to layer
+# other experimental keys here without merging into the main config.
+#

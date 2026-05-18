@@ -1,0 +1,23 @@
+{% include lang.html %}
+{% assign post = include.post %}
+{% assign post_df = site.data.locales[lang].date_format.post.long | default: '%b %e, %Y' %}
+
+<article class="post-card{% if include.featured %} post-card-featured{% endif %}{% if include.compact %} post-card-compact{% endif %}">
+  <div class="post-card-meta">
+    {% if post.categories.size > 0 %}
+      <span class="category mono">{{ post.categories | first }}</span>
+    {% endif %}
+    <time class="mono" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: post_df }}</time>
+  </div>
+
+  <h2 class="post-card-title word-animation">
+    <a href="{{ post.url | relative_url }}">{% include noir/title-word-spans.html text=post.title %}</a>
+  </h2>
+
+  {% unless include.compact %}
+    <p class="post-card-excerpt">
+      {% assign excerpt_len = include.truncate | default: 160 %}
+      {{ post.excerpt | default: post.content | strip_html | truncate: excerpt_len }}
+    </p>
+  {% endunless %}
+</article>

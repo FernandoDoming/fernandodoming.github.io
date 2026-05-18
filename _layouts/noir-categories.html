@@ -1,0 +1,25 @@
+---
+layout: noir-page
+---
+
+{% assign sort_categories = site.categories | sort %}
+
+{% for category in sort_categories %}
+  {% assign category_name = category | first %}
+  {% assign posts_of_category = category | last %}
+
+  <section class="category-group">
+    <h2 class="category-name">
+      <a href="{{ site.baseurl }}/categories/{{ category_name | slugify | url_encode }}/">{{ category_name }}</a>
+      <span class="mono">{{ posts_of_category.size }}</span>
+    </h2>
+    <ul class="archive-list">
+      {% for post in posts_of_category limit: 8 %}
+        <li>
+          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          <time class="archive-date mono">{{ post.date | date: '%b %e, %Y' }}</time>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+{% endfor %}
