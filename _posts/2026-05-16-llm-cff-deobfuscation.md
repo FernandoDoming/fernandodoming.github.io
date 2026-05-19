@@ -468,7 +468,7 @@ __int64 __fastcall sub_7FF7C341BC96(__int64 *a1)
 
 The model also added comments identifying the called functions. Debugger validation confirms both the program flow and the comments are correct.
 
-
+![](/assets/img/blog/cff_deob/expand_progfiles.png)
 
 The comments were likely inferred from context given the arguments passed to each function. The model's reasoning output includes this:
 
@@ -649,7 +649,11 @@ int main(void) {
 }
 ```
 
-Compiling that program with OLLVM produces a 2.2 MB binary. Notably, OLLVM does not obfuscate imports or strings by default, so it is easy to identify the original `main` function, in this case `sub_140001000`. The function is a nightmare at 1,459,928 bytes with 105 basic blocks and 276 edges, it would make any reverse engineer shiver. Previous deobfuscation tests used Hex-Rays decompiler output, but Hex-Rays cannot decompile this function, as it fails with `Decompilation failure: too big function`. The code therefore needed to be adjusted to also handle raw assembly output. In addition, the assembly listing is too large to fit in a single request, so the model is instructed to explore the function in chunks via MCP tool calls.
+Compiling that program with OLLVM produces a 2.2 MB binary. Notably, OLLVM does not obfuscate imports or strings by default, so it is easy to identify the original `main` function, in this case `sub_140001000`. The function is a nightmare at 1,459,928 bytes with 105 basic blocks and 276 edges, it would make any reverse engineer shiver. You can see the function's graph in the following image:
+
+![](/assets/img/blog/cff_deob/ollvm_graph.png)
+
+Previous deobfuscation tests used Hex-Rays decompiler output, but Hex-Rays cannot decompile this function, as it fails with `Decompilation failure: too big function`. The code therefore needed to be adjusted to also handle raw assembly output. In addition, the assembly listing is too large to fit in a single request, so the model is instructed to explore the function in chunks via MCP tool calls.
 
 Running the script with Gemini 3.1 Flash targeting that function yields the following output:
 
