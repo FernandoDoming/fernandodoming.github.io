@@ -334,6 +334,27 @@ body.noir-theme.sidebar-collapsed {
   color: $text-muted;
 }
 
+.post-card--last {
+  border-bottom: none;
+}
+
+.post-list:not(.external-posts) > .post-card:last-child {
+  border-bottom: none;
+}
+
+.external-posts {
+  margin-top: $space-lg;
+  padding-top: 0;
+  border-top: none;
+}
+
+.external-post-card {
+  .external-post-source {
+    color: $text-muted;
+    font-size: 0.75rem;
+  }
+}
+
 .post-tags {
   display: flex;
   flex-wrap: wrap;

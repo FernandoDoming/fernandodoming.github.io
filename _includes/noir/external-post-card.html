@@ -1,0 +1,23 @@
+{% include lang.html %}
+{% assign item = include.item %}
+{% assign post_df = site.data.locales[lang].date_format.post.long | default: '%b %e, %Y' %}
+
+<article class="post-card external-post-card">
+  <div class="post-card-meta">
+    <time class="mono" datetime="{{ item.date | date_to_xmlschema }}">{{ item.date | date: post_df }}</time>
+    <span class="external-post-source mono" aria-hidden="true">↗</span>
+  </div>
+
+  <h2 class="post-card-title">
+    <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">
+      {% include noir/title-word-spans.html text=item.title %}
+    </a>
+  </h2>
+
+  {% if item.description %}
+    <p class="post-card-excerpt">
+      {% assign excerpt_len = include.truncate | default: 160 %}
+      {{ item.description | strip_html | truncate: excerpt_len }}
+    </p>
+  {% endif %}
+</article>

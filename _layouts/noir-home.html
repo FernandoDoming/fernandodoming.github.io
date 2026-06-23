@@ -47,11 +47,22 @@ layout: noir
   <p class="post-list-heading">Posts</p>
   {% if posts.size > 0 %}
     {% for post in posts %}
-      {% include noir/post-card.html post=post %}
+      {% include noir/post-card.html post=post last_in_list=forloop.last %}
     {% endfor %}
   {% else %}
     <p class="lead">No posts yet.</p>
   {% endif %}
 </section>
+
+{% if paginator.page == nil or paginator.page == 1 %}
+  {% if site.data.external_posts.size > 0 %}
+    <section class="post-list external-posts" aria-label="External posts">
+      <p class="post-list-heading">External posts</p>
+      {% for item in site.data.external_posts %}
+        {% include noir/external-post-card.html item=item %}
+      {% endfor %}
+    </section>
+  {% endif %}
+{% endif %}
 
 {% include noir/pagination.html %}

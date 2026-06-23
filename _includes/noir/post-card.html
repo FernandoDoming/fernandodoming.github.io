@@ -2,11 +2,8 @@
 {% assign post = include.post %}
 {% assign post_df = site.data.locales[lang].date_format.post.long | default: '%b %e, %Y' %}
 
-<article class="post-card{% if include.featured %} post-card-featured{% endif %}{% if include.compact %} post-card-compact{% endif %}">
+<article class="post-card{% if include.featured %} post-card-featured{% endif %}{% if include.compact %} post-card-compact{% endif %}{% if include.last_in_list %} post-card--last{% endif %}">
   <div class="post-card-meta">
-    {% if post.categories.size > 0 %}
-      <span class="category mono">{{ post.categories | first }}</span>
-    {% endif %}
     <time class="mono" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: post_df }}</time>
   </div>
 
@@ -20,4 +17,12 @@
       {{ post.excerpt | default: post.content | strip_html | truncate: excerpt_len }}
     </p>
   {% endunless %}
+
+  {% if post.categories.size > 0 %}
+    <div class="post-card-categories" aria-label="Categories">
+      {% for category in post.categories %}
+        <a href="{{ site.baseurl }}/categories/{{ category | slugify | url_encode }}/" class="tag-pill">{{ category }}</a>
+      {% endfor %}
+    </div>
+  {% endif %}
 </article>

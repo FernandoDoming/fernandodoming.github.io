@@ -41,6 +41,22 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+
+  .post-card-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-xs;
+    margin: 0;
+    padding-top: $space-xs;
+
+    .tag-pill {
+      font-family: $font-mono;
+      font-size: 0.625rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: $text-secondary;
+    }
+  }
 }
 
 .post-card-compact {

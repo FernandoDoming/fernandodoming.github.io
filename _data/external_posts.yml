@@ -1,0 +1,37 @@
+# External publications (newest first).
+# To add an entry: copy a block below, set title, date (YYYY-MM-DD), url, and description.
+- title: "Hijacked: How Cybercriminals Are Turning Anti-Virus Software Against You"
+  date: 2024-08-06
+  url: https://www.levelblue.com/blogs/spiderlabs-blog/hijacked-how-cybercriminals-are-turning-anti-virus-software-against-you
+  description: >-
+    Threat actors are modifying legitimate anti-virus binaries and re-signing them to run SbaProxy,
+    a tool that establishes proxy connections through a C&C server while masquerading as trusted
+    security software.
+
+- title: "LevelBlue Labs Discovers Highly Evasive, New Loader Targeting Chinese Organizations"
+  date: 2024-06-19
+  url: https://www.levelblue.com/blogs/spiderlabs-blog/highly-evasive-squidloader-targets-chinese-organizations
+  description: >-
+    SquidLoader is a new highly evasive malware loader delivered via phishing attachments, using
+    anti-analysis and decoy techniques to deliver Cobalt Strike beacons to targeted organizations.
+
+- title: "Code similarity analysis with r2diaphora"
+  date: 2021-10-27
+  url: https://www.levelblue.com/blogs/spiderlabs-blog/code-similarity-analysis-with-r2diaphora
+  description: >-
+    Binary diffing can speed up malware analysis and family attribution. This post introduces
+    r2diaphora, an open-source port of Diaphora for Radare2, with practical IoT malware use cases.
+
+- title: "PRISM attacks fly under the radar"
+  date: 2021-08-23
+  url: https://www.levelblue.com/blogs/spiderlabs-blog/prism-attacks-fly-under-the-radar/
+  description: >-
+    A cluster of low-detected Linux ELF samples turned out to be modified PRISM backdoors used in
+    small campaigns that remained active and under the radar for more than three years.
+
+- title: "Technical Analysis of an Active Cryptomining Worm by LevelBlue Labs"
+  date: 2020-01-09
+  url: https://www.levelblue.com/blogs/spiderlabs-blog/att-alien-labs-analysis-of-an-active-cryptomining-worm
+  description: >-
+    Overview of common malicious implants deployed after exploitation of vulnerable Exim, Confluence,
+    and WebLogic servers, including a modified Xmrig-based Monero miner and its propagation chain.
